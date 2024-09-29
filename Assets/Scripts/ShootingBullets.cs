@@ -12,6 +12,7 @@ public class ShootingBullets : MonoBehaviour
 
     private Vector3 _direction;
     private GameObject _newBullet;
+    private Rigidbody _rigidbodyBullet;
 
     private void Start()
     {
@@ -25,8 +26,9 @@ public class ShootingBullets : MonoBehaviour
             _direction = (ObjectToShoot.position - transform.position).normalized;
             _newBullet = Instantiate(_prefab, transform.position + _direction, Quaternion.identity);
 
-            _newBullet.GetComponent<Rigidbody>().transform.up = _direction;
-            _newBullet.GetComponent<Rigidbody>().velocity = _direction * _number;
+            _rigidbodyBullet = _newBullet.GetComponent<Rigidbody>();
+            _rigidbodyBullet.transform.up = _direction;
+            _rigidbodyBullet.velocity = _direction * _number;
 
             yield return new WaitForSeconds(_timeWaitShooting);
         }
