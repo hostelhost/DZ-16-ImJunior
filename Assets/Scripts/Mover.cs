@@ -7,10 +7,11 @@ public class Mover : MonoBehaviour
 
     private Vector3 _target;
     private int _countTarget;
+    private int _index;
 
     private void Awake()
     {
-        _countTarget = _arrayPlaces.Length - 1;
+        _countTarget = _arrayPlaces.Length -1 ;
         _target = _arrayPlaces[_countTarget].position;
     }
 
@@ -25,6 +26,8 @@ public class Mover : MonoBehaviour
     private Vector3 NextTarget()
     {
         _countTarget++;
+
+        _index = _countTarget + 1 % _arrayPlaces.Length;
 
         if (_countTarget == _arrayPlaces.Length - 1)
             _countTarget = 0;
