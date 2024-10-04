@@ -7,7 +7,6 @@ public class Mover : MonoBehaviour
 
     private Vector3 _target;
     private int _countTarget;
-    private int _index;
 
     private void Awake()
     {
@@ -25,12 +24,7 @@ public class Mover : MonoBehaviour
 
     private Vector3 NextTarget()
     {
-        _countTarget++;
-
-        _index = _countTarget + 1 % _arrayPlaces.Length;
-
-        if (_countTarget == _arrayPlaces.Length - 1)
-            _countTarget = 0;
+        _countTarget = ++_countTarget % _arrayPlaces.Length;
 
         Vector3 nextTarget = _arrayPlaces[_countTarget].transform.position;
         transform.forward = nextTarget - transform.position;
